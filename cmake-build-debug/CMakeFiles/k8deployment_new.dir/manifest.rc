@@ -1,0 +1,2 @@
+#pragma code_page(65001)
+1 /* CREATEPROCESS_MANIFEST_RESOURCE_ID */ 24 /* RT_MANIFEST */ "C:/Users/Burak/CLionProjects/k8deployment-new/cmake-build-debug/CMakeFiles/k8deployment_new.dir/embed.manifest"

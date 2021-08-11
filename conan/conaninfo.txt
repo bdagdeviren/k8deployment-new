@@ -1,0 +1,44 @@
+[settings]
+    arch=x86_64
+    build_type=Release
+    compiler=Visual Studio
+    compiler.runtime=MD
+    compiler.version=15
+    os=Windows
+
+[requires]
+    cjson/1.Y.Z
+    libyaml/0.2.5
+    log.c/cci.20200620
+
+[options]
+
+
+[full_settings]
+    arch=x86_64
+    arch_build=x86_64
+    build_type=Release
+    compiler=Visual Studio
+    compiler.runtime=MD
+    compiler.version=15
+    os=Windows
+    os_build=Windows
+
+[full_requires]
+    cjson/1.7.14:1847758cc020b185f391ef4c213a79a88d3f6bc7
+    libyaml/0.2.5:6cc50b139b9c3d27b3e9042d5f5372d327b3a9f7
+    log.c/cci.20200620:4fa84a55b18883f93b7f256181f8433f4080e0cf
+
+[full_options]
+    cjson:shared=False
+    cjson:use_locales=True
+    cjson:utils=False
+    libyaml:shared=False
+    log.c:color=True
+    log.c:shared=False
+
+[recipe_hash]
+
+
+[env]
+    CONAN_DISABLE_CHECK_COMPILER=True

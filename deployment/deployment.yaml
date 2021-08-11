@@ -1,0 +1,15 @@
+waitTime: 30 #Second
+deployment:
+#  - name: calico
+#    path: calico/calico.yaml
+#    namespace: kube-system
+  - name: cert-manager
+    path: cert-manager/cert-manager.yaml
+#    waitDeploy: calico
+  - name: certificate
+    path: cert-manager/certificate.yaml
+    wait:
+      name: cert-manager
+      namespace: cert-manager
+#  - name: traefik
+#    path: traefik/traefik.yaml

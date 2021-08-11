@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/Burak/.conan/data/cjson/1.7.14/_/_/package/1847758cc020b185f391ef4c213a79a88d3f6bc7/include/cjson/cJSON.h
+stddef.h
+-
+
+C:/Users/Burak/.conan/data/log.c/cci.20200620/_/_/package/4fa84a55b18883f93b7f256181f8433f4080e0cf/include/log.h
+stdio.h
+-
+stdarg.h
+-
+stdbool.h
+-
+time.h
+-
+
+C:/Users/Burak/CLionProjects/k8deployment-new/main.c
+stdio.h
+-
+cjson/cJSON.h
+C:/Users/Burak/CLionProjects/k8deployment-new/cjson/cJSON.h
+log.h
+C:/Users/Burak/CLionProjects/k8deployment-new/log.h
+

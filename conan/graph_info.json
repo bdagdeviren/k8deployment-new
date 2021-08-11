@@ -1,0 +1,34 @@
+{
+ "options": [
+  [
+   "cjson:shared",
+   "False"
+  ],
+  [
+   "cjson:use_locales",
+   "True"
+  ],
+  [
+   "cjson:utils",
+   "False"
+  ],
+  [
+   "libyaml:shared",
+   "False"
+  ],
+  [
+   "log.c:color",
+   "True"
+  ],
+  [
+   "log.c:shared",
+   "False"
+  ]
+ ],
+ "root": {
+  "name": null,
+  "version": null,
+  "user": null,
+  "channel": null
+ }
+}

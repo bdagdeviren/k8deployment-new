@@ -1,0 +1,3 @@
+C:/Users/Burak/CLionProjects/k8deployment-new/build/CMakeFiles/k8deployment_new.dir
+C:/Users/Burak/CLionProjects/k8deployment-new/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/Burak/CLionProjects/k8deployment-new/build/CMakeFiles/ZERO_CHECK.dir

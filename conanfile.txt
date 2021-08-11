@@ -1,0 +1,7 @@
+[requires]
+log.c/cci.20200620
+libyaml/0.2.5
+cjson/1.7.14
+
+[generators]
+cmake

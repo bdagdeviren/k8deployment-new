@@ -1,0 +1,14 @@
+E:\Jetbrains\toolbox\apps\CLion\ch-0\211.7442.42\bin\cmake\win\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - NMake Makefiles" C:\Users\Burak\CLionProjects\k8deployment-new
+-- Cmake Source Dirs: C:/Users/Burak/CLionProjects/k8deployment-new
+-- Including Libs Directories: 
+-- Including Libs Directories: 
+-- Including Src Directories: 
+-- Conan: Adjusting output directories
+-- Conan: Using cmake global configuration
+-- Conan: Adjusting default RPATHs Conan policies
+-- Conan: Adjusting language standard
+-- This project seems to be plain C, using 'MSVC' compiler
+-- Current conanbuildinfo.cmake directory: C:/Users/Burak/CLionProjects/k8deployment-new/conan
+-- Configuring done
+-- Generating done
+-- Build files have been written to: C:/Users/Burak/CLionProjects/k8deployment-new/cmake-build-debug

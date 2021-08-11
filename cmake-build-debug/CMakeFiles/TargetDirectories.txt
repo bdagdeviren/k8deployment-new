@@ -1,0 +1,3 @@
+C:/Users/Burak/CLionProjects/k8deployment-new/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Burak/CLionProjects/k8deployment-new/cmake-build-debug/CMakeFiles/k8deployment_new.dir
+C:/Users/Burak/CLionProjects/k8deployment-new/cmake-build-debug/CMakeFiles/rebuild_cache.dir

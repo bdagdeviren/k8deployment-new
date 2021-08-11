@@ -1,0 +1,40 @@
+{
+ "graph_lock": {
+  "nodes": {
+   "0": {
+    "options": "cjson:shared=False\ncjson:use_locales=True\ncjson:utils=False\nlibyaml:shared=False\nlog.c:color=True\nlog.c:shared=False",
+    "requires": [
+     "1",
+     "2",
+     "3"
+    ],
+    "path": "..\\conanfile.txt",
+    "context": "host"
+   },
+   "1": {
+    "ref": "log.c/cci.20200620",
+    "options": "color=True\nshared=False",
+    "package_id": "4fa84a55b18883f93b7f256181f8433f4080e0cf",
+    "prev": "0",
+    "context": "host"
+   },
+   "2": {
+    "ref": "libyaml/0.2.5",
+    "options": "shared=False",
+    "package_id": "6cc50b139b9c3d27b3e9042d5f5372d327b3a9f7",
+    "prev": "0",
+    "context": "host"
+   },
+   "3": {
+    "ref": "cjson/1.7.14",
+    "options": "shared=False\nuse_locales=True\nutils=False",
+    "package_id": "1847758cc020b185f391ef4c213a79a88d3f6bc7",
+    "prev": "0",
+    "context": "host"
+   }
+  },
+  "revisions_enabled": false
+ },
+ "version": "0.4",
+ "profile_host": "[settings]\narch=x86_64\narch_build=x86_64\nbuild_type=Release\ncompiler=Visual Studio\ncompiler.runtime=MD\ncompiler.version=15\nos=Windows\nos_build=Windows\n[options]\n[build_requires]\n[env]\nCONAN_DISABLE_CHECK_COMPILER=True"
+}
