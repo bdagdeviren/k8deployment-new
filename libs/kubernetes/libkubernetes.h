@@ -75,7 +75,7 @@ struct create_yaml_return {
 	char* r1; /* result */
 	char* r2; /* errStr */
 };
-extern __declspec(dllexport) struct create_yaml_return create_yaml(char* path);
+extern __declspec(dllexport) struct create_yaml_return create_yaml(char* subpath, char* path);
 
 /* Return type for update_yaml */
 struct update_yaml_return {
@@ -83,7 +83,7 @@ struct update_yaml_return {
 	char* r1; /* result */
 	char* r2; /* errStr */
 };
-extern __declspec(dllexport) struct update_yaml_return update_yaml(char* path);
+extern __declspec(dllexport) struct update_yaml_return update_yaml(char* subpath, char* path);
 
 /* Return type for delete_yaml */
 struct delete_yaml_return {
@@ -91,7 +91,7 @@ struct delete_yaml_return {
 	char* r1; /* result */
 	char* r2; /* errStr */
 };
-extern __declspec(dllexport) struct delete_yaml_return delete_yaml(char* path);
+extern __declspec(dllexport) struct delete_yaml_return delete_yaml(char* subpath, char* path);
 
 /* Return type for apply_yaml */
 struct apply_yaml_return {
@@ -99,7 +99,7 @@ struct apply_yaml_return {
 	char* r1; /* result */
 	char* r2; /* errStr */
 };
-extern __declspec(dllexport) struct apply_yaml_return apply_yaml(char* path);
+extern __declspec(dllexport) struct apply_yaml_return apply_yaml(char* subpath, char* path);
 
 /* Return type for check_pod_status */
 struct check_pod_status_return {

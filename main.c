@@ -38,7 +38,24 @@ void deploy_yaml(const char *json_string){
 
                         if (strlen(deployment_wait_name->valuestring) != 0 && strlen(deployment_wait_namespace->valuestring) != 0) {
                             log_info("Checking Pod Deployment - Name: %s, Namespace: %s",deployment_wait_name->valuestring,deployment_wait_namespace->valuestring);
-                            log_info("Applying Yaml - Name: %s, Path: %s",deployment_name->valuestring,deployment_path->valuestring);
+                            while(1){
+                                struct check_pod_status_return check_pod_status_return;
+                                check_pod_status_return = check_pod_status(deployment_wait_namespace->valuestring,deployment_wait_name->valuestring);
+                                if (check_pod_status_return.r0 != 0) {
+                                    log_error(check_pod_status_return.r1);
+                                } else {
+                                    log_info(check_pod_status_return.r1);
+                                    log_info("Applying Yaml - Name: %s, Path: %s",deployment_name->valuestring,deployment_path->valuestring);
+                                    struct apply_yaml_return applyYamlReturn;
+                                    applyYamlReturn = apply_yaml("deployment",deployment_path->valuestring);
+                                    if (applyYamlReturn.r0 != 0) {
+                                        log_error(applyYamlReturn.r2);
+                                    } else {
+                                        log_info(applyYamlReturn.r1);
+                                    }
+                                    break;
+                                }
+                            }
                         }else{
                             log_info("Applying Yaml - Name: %s, Path: %s",deployment_name->valuestring,deployment_path->valuestring);
                         }

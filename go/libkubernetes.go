@@ -3,16 +3,14 @@ package main
 import "C"
 import (
 	"encoding/json"
-	"flag"
-	"github.com/johandry/klient"
-	"gopkg.in/yaml.v2"
-	"io/ioutil"
-	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-	"k8s.io/client-go/kubernetes"
-	"k8s.io/client-go/tools/clientcmd"
-	"k8s.io/client-go/util/homedir"
-	"path/filepath"
-	"strings"
+    "github.com/johandry/klient"
+    "gopkg.in/yaml.v2"
+    "io/ioutil"
+    metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+    "k8s.io/client-go/kubernetes"
+    "k8s.io/client-go/rest"
+    "path/filepath"
+    "strings"
 )
 
 type YamlFile struct {
@@ -31,33 +29,23 @@ type Wait struct {
 	Namespace string `yaml:"namespace"`
 }
 
-func Client() *kubernetes.Clientset  {
-	var kubeconfig *string
-	if home := homedir.HomeDir(); home != "" {
-		kubeconfig = flag.String("kubeconfig", filepath.Join(home, ".kube", "config"), "(optional) absolute path to the kubeconfig file")
-	} else {
-		kubeconfig = flag.String("kubeconfig", "", "absolute path to the kubeconfig file")
-	}
-	flag.Parse()
-
-	// use the current context in kubeconfig
-	config, err := clientcmd.BuildConfigFromFlags("", *kubeconfig)
+func Client() (*kubernetes.Clientset,error) {
+	config, err := rest.InClusterConfig()
 	if err != nil {
-		panic(err.Error())
+		return nil,err
 	}
-
-	// create the clientset
+	// creates the clientset
 	clientset, err := kubernetes.NewForConfig(config)
 	if err != nil {
-		panic(err.Error())
+		return nil,err
 	}
 
-	return clientset
+	return clientset,nil
 }
 
 //export create_yaml
-func create_yaml(path *C.char) (rc int,result *C.char,errStr *C.char) {
-	file, err := ioutil.ReadFile(C.GoString(path))
+func create_yaml(subpath *C.char, path *C.char) (rc int,result *C.char,errStr *C.char) {
+	file, err := ioutil.ReadFile(filepath.Join(C.GoString(subpath),C.GoString(path)))
 	if err != nil {
 		return -1, nil, C.CString(err.Error())
 	}
@@ -73,8 +61,8 @@ func create_yaml(path *C.char) (rc int,result *C.char,errStr *C.char) {
 }
 
 //export update_yaml
-func update_yaml(path *C.char) (rc int,result *C.char,errStr *C.char) {
-	file, err := ioutil.ReadFile(C.GoString(path))
+func update_yaml(subpath *C.char, path *C.char) (rc int,result *C.char,errStr *C.char) {
+	file, err := ioutil.ReadFile(filepath.Join(C.GoString(subpath),C.GoString(path)))
 	if err != nil {
 		return -1, nil, C.CString(err.Error())
 	}
@@ -90,8 +78,8 @@ func update_yaml(path *C.char) (rc int,result *C.char,errStr *C.char) {
 }
 
 //export delete_yaml
-func delete_yaml(path *C.char) (rc int,result *C.char,errStr *C.char) {
-	file, err := ioutil.ReadFile(C.GoString(path))
+func delete_yaml(subpath *C.char, path *C.char) (rc int,result *C.char,errStr *C.char) {
+	file, err := ioutil.ReadFile(filepath.Join(C.GoString(subpath),C.GoString(path)))
 	if err != nil {
 		return -1, nil, C.CString(err.Error())
 	}
@@ -107,8 +95,8 @@ func delete_yaml(path *C.char) (rc int,result *C.char,errStr *C.char) {
 }
 
 //export apply_yaml
-func apply_yaml(path *C.char) (rc int,result *C.char,errStr *C.char) {
-	file, err := ioutil.ReadFile(C.GoString(path))
+func apply_yaml(subpath *C.char, path *C.char) (rc int,result *C.char,errStr *C.char) {
+	file, err := ioutil.ReadFile(filepath.Join(C.GoString(subpath),C.GoString(path)))
 	if err != nil {
 		return -1, nil, C.CString(err.Error())
 	}
@@ -125,7 +113,11 @@ func apply_yaml(path *C.char) (rc int,result *C.char,errStr *C.char) {
 
 //export check_pod_status
 func check_pod_status(namespace *C.char,podName *C.char) (rc int,result *C.char,errStr *C.char) {
-	clientset := Client()
+	clientset,err := Client()
+	if err != nil {
+    	return -1, nil, C.CString(err.Error())
+    }
+
 	isDeployed := false
 
 	pods, err := clientset.CoreV1().Pods(C.GoString(namespace)).List(metav1.ListOptions{})
